@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %} 
+
+Discos que has escuchado {% endblock %}
+
+{% block content %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_disco' %}" role="button">Agregar disco/album</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Discos</h4>
+        
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Artista</th>
+                        <th>Subgenero</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    {% for disco in discos %}
+                    <tr>
+                        <td>{{ disco.id }}</td>
+                        <td>{{ disco.nombre }}</td>
+                        <td>{{ disco.banda }}</td>
+                        <td>{{ disco.subgenero }}</td>
+                        <td>
+                        
+                        <img src="{{ disco.imagen.url }}" height="300" width="300">
+                            
+                        </td>
+                        <td> 
+                             <a name="" id="" class="btn btn-info" href="{% url 'editar_disco' disco.id %}" role="button">Editar</a>
+                             <a name="" id="" class="btn btn-danger" href="{% url 'borrar' disco.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="card-footer text-muted">
+        
+    </div>
+</div>
+
+{% endblock %}
